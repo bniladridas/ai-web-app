@@ -5,7 +5,7 @@
 ![React](https://img.shields.io/badge/React-v18.2.0-blue)
 ![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green)
 
-A MERN-stack application leveraging AI for advanced search capabilities.
+A MERN-stack application leveraging OpenAI GPT-4o (upgraded from Gemini 2.0) for advanced multimodal search and coding capabilities.
 
 ## How to Run the Project
 
@@ -37,7 +37,7 @@ A MERN-stack application leveraging AI for advanced search capabilities.
      PORT=5003
      MONGODB_URI=your_mongodb_atlas_uri
      JWT_SECRET=your_secure_jwt_secret
-     GOOGLE_API_KEY=your_gemini_api_key
+     OPENAI_API_KEY=your_openai_api_key
      ```
 
 5. **Start the backend server**:
@@ -77,7 +77,7 @@ The `.gitignore` file prevents sensitive files (e.g., `.env` with `JWT_SECRET` a
 - **Mongoose**: MongoDB object modeling for Node.js.
 - **React**: Library for building user interfaces.
 - **React Markdown**: Renders Markdown in React.
-- **Google Generative AI**: Integrates with the Gemini API.
+- **openai**: Integrates with OpenAI GPT-4o for AI power.
 - **jsonwebtoken**: Handles JWT authentication.
 
 ## Installation
@@ -89,9 +89,16 @@ The `.gitignore` file prevents sensitive files (e.g., `.env` with `JWT_SECRET` a
 
 2. **Install required modules**:
    ```bash
-   npm install express mongoose jsonwebtoken @google/generative-ai
+   npm install express mongoose jsonwebtoken openai
    cd client && npm install react react-dom react-markdown
    ```
+
+## Why GPT-4o?
+
+Switched from Gemini 2.0 to GPT-4o for:
+- **Reasoning**: Deeper, more nuanced search responses.
+- **Coding**: Cleaner, more reliable code generation (e.g., React components).
+- **Multimodal**: Strong text and image handling, with potential for future expansion.
 
 ## Box Chart
 
