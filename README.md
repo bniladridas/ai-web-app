@@ -5,7 +5,7 @@
 ![React](https://img.shields.io/badge/React-v18.2.0-blue)
 ![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green)
 
-A MERN-stack application leveraging OpenAI GPT-4o (upgraded from Gemini 2.0) for advanced multimodal search and coding capabilities.
+A MERN-stack application leveraging Google Gemini API for advanced multimodal search and coding capabilities.
 
 ## How to Run the Project
 
@@ -37,7 +37,7 @@ A MERN-stack application leveraging OpenAI GPT-4o (upgraded from Gemini 2.0) for
      PORT=5003
      MONGODB_URI=your_mongodb_atlas_uri
      JWT_SECRET=your_secure_jwt_secret
-     OPENAI_API_KEY=your_openai_api_key
+     GOOGLE_API_KEY=your_gemini_api_key
      ```
 
 5. **Start the backend server**:
@@ -77,7 +77,7 @@ The `.gitignore` file prevents sensitive files (e.g., `.env` with `JWT_SECRET` a
 - **Mongoose**: MongoDB object modeling for Node.js.
 - **React**: Library for building user interfaces.
 - **React Markdown**: Renders Markdown in React.
-- **openai**: Integrates with OpenAI GPT-4o for AI power.
+- **@google/generative-ai**: Integrates with the Gemini API.
 - **jsonwebtoken**: Handles JWT authentication.
 
 ## Installation
@@ -89,16 +89,32 @@ The `.gitignore` file prevents sensitive files (e.g., `.env` with `JWT_SECRET` a
 
 2. **Install required modules**:
    ```bash
-   npm install express mongoose jsonwebtoken openai
+   npm install express mongoose jsonwebtoken @google/generative-ai
    cd client && npm install react react-dom react-markdown
    ```
 
-## Why GPT-4o?
+## Optional Upgrade: Switching to GPT-4o
 
-Switched from Gemini 2.0 to GPT-4o for:
-- **Reasoning**: Deeper, more nuanced search responses.
-- **Coding**: Cleaner, more reliable code generation (e.g., React components).
-- **Multimodal**: Strong text and image handling, with potential for future expansion.
+You can enhance this app by switching from Gemini to OpenAI GPT-4o:
+- **Install**: `npm install openai`
+- **Update `.env`**: Replace `GOOGLE_API_KEY` with `OPENAI_API_KEY=your_openai_api_key`
+- **Modify `gemini-app.js`** (example):
+  ```javascript
+  const { OpenAI } = require("openai");
+  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  app.post("/search", async (req, res) => {
+    const { query } = req.body;
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o",
+      messages: [{ role: "user", content: query }],
+    });
+    res.json({ response: completion.choices[0].message.content });
+  });
+  ```
+- **Why GPT-4o?**:
+  - **Reasoning**: Deeper, more nuanced search responses.
+  - **Coding**: Cleaner, more reliable code generation (e.g., React components).
+  - **Multimodal**: Strong text and image handling for future expansion.
 
 ## Box Chart
 
